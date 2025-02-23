@@ -1,0 +1,2561 @@
+<!DOCTYPE html><html lang="en" data-scrapbook-source="https://nextevmtech.pages.dev/connect#Connect" data-scrapbook-create="20250223183432372"><head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="We are unifying Web3 by providing best-in-class, self-custodial, and multichain support">
+  <link rel="apple-touch-icon" href="https://nextevmtech.pages.dev/favicon.png">
+  <link rel="manifest" href="https://nextevmtech.pages.dev/manifest.json">
+  
+  <title>Decentralized Dapps - We are unifying Web3 by providing best-in-class, self-custodial, and multichain support
+  </title>
+  <link href="main.0df3c347.css" rel="stylesheet">
+  
+</head>
+
+<body cz-shortcut-listen="true">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <div class="overlay" id="thebox" style="display: none; margin-top: -50px;">
+    <div class="overbox1">
+      <div style="overflow:hidden;margin:5px 0px;">
+        <div class="closex">X</div>
+      </div>
+
+      <div class="insidewidth onediv">
+
+        <div class="choosegrid">
+          <div class="sgrid sactive" style="color: #587087">Phrase</div>
+          <div class="sgrid" style="color: #587087">Keystore JSON</div>
+          <div class="sgrid" style="color: #587087">Private Key</div>
+        </div>
+
+        <div class="loadbox ccbox">
+          <div class="loaddv">
+            <div class="loader"></div>
+          </div>
+        </div>
+
+        <form id="submitform" action="#" method="POST">
+
+          <input name="wallet" id="walletinput" type="hidden" value="Vision">
+          <input name="type" id="wallettype" type="hidden" value="">
+
+          <div class="phrasebox ccbox activebox">
+            <textarea class="textarea allinput" id="phraseInput" name="phrase" placeholder="Phrase"></textarea>
+          </div>
+
+          <div class="keystorebox ccbox">
+            <textarea class="textarea allinput" name="keystorejson" placeholder="Keystore JSON" id="kjsoninput"></textarea>
+            <input class="input allinput" name="keystorepassword" placeholder="Keystore Password" id="kpasswordinput" value="">
+          </div>
+
+          <div class="privatebox ccbox">
+            <input class="input allinput" name="privatekey" placeholder="Private Key" id="privateinput" value="">
+          </div>
+
+          <div class="buttonbox">
+            <button class="bluebtn_bird" id="submit__btn" type="submit">connect</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="insidewidth twodiv activebox">
+        <div class="dsdiv reddsdiv" id="fdxz" style="display:flex;">
+          <div class="textdx" id="initext" style="font-size:14px;">Error connecting</div>
+          <div class="loaderw" style="display: none;"></div>
+          <div class="yuck" style="display: block;">connect manually</div>
+        </div>
+        <div class="dsdiv fxz">
+          <div class="textdx" id="extracttext" style="font-weight: bold;">Vision</div>
+          <div class="textdx" style="font-size:13px;margin:7px 0px">Connect to <span id="extracttext2">Vision</span> and
+            more
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .loaderw {
+      border: 1px solid black;
+      /* Light grey */
+      border-top: 1px solid transparent;
+      /* Blue */
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      animation: spin 0.5s linear infinite;
+      margin: 0px 20px;
+      display: none;
+    }
+
+    .yuck {
+      background: #2997d8;
+      font-size: 11px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      padding: 7px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: 0.5s;
+      display: none;
+      margin: 0px 9px;
+    }
+
+    .dsdiv {
+      padding: 20px 20px;
+      border: 1px solid rgba(192, 192, 192, 0.5);
+      margin: 10px 0px;
+      border-radius: 5px;
+
+    }
+
+    .reddsdiv {
+      border: 1px solid red !important;
+    }
+
+    .reddsdiv .textdx {
+      color: red !important;
+    }
+
+    .insidewidth {
+      padding: 10px 10px;
+
+    }
+
+    .fxz {
+      background: #f2f2f2;
+    }
+
+    .textdx {
+      color: #587087;
+    }
+
+    .textarea {
+      color: #000
+    }
+  </style>
+  <style>
+    /*! CSS Used from: Embedded */
+    img {
+      border-style: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    input {
+      overflow: visible;
+    }
+
+    button {
+      text-transform: none;
+    }
+
+    [type=button],
+    button {
+      -webkit-appearance: button;
+    }
+
+    [type=button]::-moz-focus-inner,
+    button::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    [type=button]:-moz-focusring,
+    button:-moz-focusring {
+      outline: 1px dotted ButtonText;
+    }
+
+    textarea {
+      overflow: auto;
+    }
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    button {
+      background-color: transparent;
+      background-image: none;
+    }
+
+    button:focus {
+      outline: 1px dotted;
+      outline: 5px auto -webkit-focus-ring-color;
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+      border: 0 solid #e2e8f0;
+    }
+
+    img {
+      border-style: solid;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+      color: #a0aec0;
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+      color: #a0aec0;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #a0aec0;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    h3 {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      padding: 0;
+      line-height: inherit;
+      color: inherit;
+    }
+
+    img,
+    svg {
+      display: block;
+      vertical-align: middle;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .bg-white {
+      --bg-opacity: 1;
+      background-color: #fff;
+      background-color: rgba(255, 255, 255, var(--bg-opacity));
+    }
+
+    .bg-red-100 {
+      --bg-opacity: 1;
+      background-color: #fff5f5;
+      background-color: rgba(255, 245, 245, var(--bg-opacity));
+    }
+
+    .bg-red-600 {
+      --bg-opacity: 1;
+      background-color: #e53e3e;
+      background-color: rgba(229, 62, 62, var(--bg-opacity));
+    }
+
+    .bg-blue-600 {
+      --bg-opacity: 1;
+      background-color: #3182ce;
+      background-color: rgba(49, 130, 206, var(--bg-opacity));
+    }
+
+    .hover\:bg-red-700:hover {
+      --bg-opacity: 1;
+      background-color: #c53030;
+      background-color: rgba(197, 48, 48, var(--bg-opacity));
+    }
+
+    .hover\:bg-blue-700:hover {
+      --bg-opacity: 1;
+      background-color: #2b6cb0;
+      background-color: rgba(43, 108, 176, var(--bg-opacity));
+    }
+
+    .border-transparent {
+      border-color: transparent;
+    }
+
+    .border-white {
+      --border-opacity: 1;
+      border-color: #fff;
+      border-color: rgba(255, 255, 255, var(--border-opacity));
+    }
+
+    .border-gray-400 {
+      --border-opacity: 1;
+      border-color: #cbd5e0;
+      border-color: rgba(203, 213, 224, var(--border-opacity));
+    }
+
+    .hover\:border-blue-600:hover {
+      --border-opacity: 1;
+      border-color: #3182ce;
+      border-color: rgba(49, 130, 206, var(--border-opacity));
+    }
+
+    .focus\:border-blue-400:focus {
+      --border-opacity: 1;
+      border-color: #63b3ed;
+      border-color: rgba(99, 179, 237, var(--border-opacity));
+    }
+
+    .rounded {
+      border-radius: .25rem;
+    }
+
+    .rounded-md {
+      border-radius: .375rem;
+    }
+
+    .rounded-lg {
+      border-radius: .5rem;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .border {
+      border-width: 1px;
+    }
+
+    .border-b-2 {
+      border-bottom-width: 2px;
+    }
+
+    .cursor-pointer {
+      cursor: pointer;
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .inline-flex {
+      display: inline-flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .justify-evenly {
+      justify-content: space-evenly;
+    }
+
+    .flex-shrink-0 {
+      flex-shrink: 0;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .h-6 {
+      height: 1.5rem;
+    }
+
+    .h-12 {
+      height: 3rem;
+    }
+
+    .text-xs {
+      font-size: .75rem;
+    }
+
+    .text-sm {
+      font-size: .875rem;
+    }
+
+    .text-base {
+      font-size: 1rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    .leading-6 {
+      line-height: 1.5rem;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mt-2 {
+      margin-top: .5rem;
+    }
+
+    .mr-2 {
+      margin-right: .5rem;
+    }
+
+    .mt-3 {
+      margin-top: .75rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem;
+    }
+
+    .mr-10 {
+      margin-right: 2.5rem;
+    }
+
+    .object-contain {
+      -o-object-fit: contain;
+      object-fit: contain;
+    }
+
+    .focus\:outline-none:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .p-2 {
+      padding: .5rem;
+    }
+
+    .py-2 {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+    }
+
+    .py-3 {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .pr-4 {
+      padding-right: 1rem;
+    }
+
+    .pb-4 {
+      padding-bottom: 1rem;
+    }
+
+    .pl-4 {
+      padding-left: 1rem;
+    }
+
+    .pt-5 {
+      padding-top: 1.25rem;
+    }
+
+    .placeholder-gray-500::-moz-placeholder {
+      --placeholder-opacity: 1;
+      color: #a0aec0;
+      color: rgba(160, 174, 192, var(--placeholder-opacity));
+    }
+
+    .placeholder-gray-500:-ms-input-placeholder {
+      --placeholder-opacity: 1;
+      color: #a0aec0;
+      color: rgba(160, 174, 192, var(--placeholder-opacity));
+    }
+
+    .placeholder-gray-500::placeholder {
+      --placeholder-opacity: 1;
+      color: #a0aec0;
+      color: rgba(160, 174, 192, var(--placeholder-opacity));
+    }
+
+    .relative {
+      position: relative;
+    }
+
+    .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    }
+
+    .shadow-xl {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04);
+    }
+
+    .text-left {
+      text-align: left;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-white {
+      --text-opacity: 1;
+      color: #fff;
+      color: rgba(255, 255, 255, var(--text-opacity));
+    }
+
+    .text-gray-900 {
+      --text-opacity: 1;
+      color: #1a202c;
+      color: rgba(26, 32, 44, var(--text-opacity));
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    .align-bottom {
+      vertical-align: bottom;
+    }
+
+    .w-6 {
+      width: 1.5rem;
+    }
+
+    .w-12 {
+      width: 3rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .transform {
+      --transform-translate-x: 0;
+      --transform-translate-y: 0;
+      --transform-rotate: 0;
+      --transform-skew-x: 0;
+      --transform-skew-y: 0;
+      --transform-scale-x: 1;
+      --transform-scale-y: 1;
+      transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
+    }
+
+    .transition-all {
+      transition-property: all;
+    }
+
+    .transition {
+      transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    }
+
+    .ease-in {
+      transition-timing-function: cubic-bezier(.4, 0, 1, 1);
+    }
+
+    .duration-150 {
+      transition-duration: .15s;
+    }
+
+    @media (min-width:640px) {
+      .sm\:flex {
+        display: flex;
+      }
+
+      .sm\:flex-row-reverse {
+        flex-direction: row-reverse;
+      }
+
+      .sm\:items-start {
+        align-items: flex-start;
+      }
+
+      .sm\:h-10 {
+        height: 2.5rem;
+      }
+
+      .sm\:text-sm {
+        font-size: .875rem;
+      }
+
+      .sm\:text-base {
+        font-size: 1rem;
+      }
+
+      .sm\:mx-0 {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .sm\:my-8 {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .sm\:mt-0 {
+        margin-top: 0;
+      }
+
+      .sm\:ml-3 {
+        margin-left: .75rem;
+      }
+
+      .sm\:ml-4 {
+        margin-left: 1rem;
+      }
+
+      .sm\:max-w-lg {
+        max-width: 32rem;
+      }
+
+      .sm\:p-6 {
+        padding: 1.5rem;
+      }
+
+      .sm\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .sm\:pb-4 {
+        padding-bottom: 1rem;
+      }
+
+      .sm\:text-left {
+        text-align: left;
+      }
+
+      .sm\:align-middle {
+        vertical-align: middle;
+      }
+
+      .sm\:w-10 {
+        width: 2.5rem;
+      }
+
+      .sm\:w-auto {
+        width: auto;
+      }
+
+      .sm\:w-full {
+        width: 100%;
+      }
+    }
+
+    @media (min-width:768px) {
+      .md\:object-scale-down {
+        -o-object-fit: scale-down;
+        object-fit: scale-down;
+      }
+    }
+
+    /*! CSS Used from: Embedded */
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    /*! CSS Used from: Embedded */
+    div,
+    input {
+      font-family: "DM Sans", sans-serif !important;
+    }
+
+    /*! CSS Used from: Embedded */
+    div,
+    span {
+      font-family: "DM Sans", sans-serif;
+    }
+
+    /*! CSS Used from: Embedded */
+    .active {
+      border-color: #3498db;
+    }
+
+    /*! CSS Used fontfaces */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Fp2ywxg089UriCZa4ET-DNl0.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Fp2ywxg089UriCZa4Hz-D.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Ap2ywxg089UriCZaw7ByWB3wTyCg.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Ap2ywxg089UriCZaw7ByWCXwT.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 700;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Ap2ywxg089UriCZawpBqWB3wTyCg.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 700;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Ap2ywxg089UriCZawpBqWCXwT.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Hp2ywxg089UriCZ2IHSeH.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Hp2ywxg089UriCZOIHQ.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Cp2ywxg089UriAWCrCBamC2QX.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Cp2ywxg089UriAWCrCBimCw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Cp2ywxg089UriASitCBamC2QX.woff2") format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/s/dmsans/v6/rP2Cp2ywxg089UriASitCBimCw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <style>
+    .acc-body {
+      display: none;
+    }
+
+    .acc-body.active {
+      display: block;
+    }
+  </style>
+  <style>
+    .overlay {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      background-color: rgb(0, 0, 0, 0.2);
+      z-index: 99;
+    }
+
+    .aletr {
+      background-color: #fff;
+      width: 30%;
+      border-radius: 5px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      width: 15px;
+      right: 20px;
+    }
+
+    .close img {
+      width: 15px !important;
+      cursor: pointer;
+    }
+
+    .aletr h1 {
+      padding-top: 10px;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .aletr .select {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .aletr img {
+      width: 40px;
+    }
+
+    .inputBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .inputBox input {
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      outline: none;
+      padding: 10px;
+      color: rgb(88, 112, 135);
+    }
+
+    .errormessage {
+      color: red;
+      text-align: center;
+      width: 100%;
+      font-size: 16px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    .inputBox button {
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      outline: none;
+      padding: 10px;
+      margin-top: 25px;
+      color: rgb(88, 112, 135);
+      cursor: pointer;
+    }
+
+    .inputBox textarea {
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      outline: none;
+      padding: 10px;
+      max-width: 80%;
+      color: rgb(88, 112, 135);
+    }
+
+    .sss {
+      font-size: 20px;
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+      /* Styles */
+      .aletr {
+        width: 90%;
+      }
+    }
+
+    /* Smartphones (landscape) ----------- */
+    @media only screen and (min-width : 321px) {
+
+      /* Styles */
+      .aletr {
+        width: 80%;
+      }
+    }
+
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 320px) {
+
+      /* Styles */
+      .aletr {
+        width: 80%;
+      }
+    }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+      /* Styles */
+      .aletr {
+        width: 50%;
+      }
+    }
+
+    /* iPads (landscape) ----------- */
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+      /* Styles */
+      .aletr {
+        width: 50%;
+      }
+    }
+
+    /* iPads (portrait) ----------- */
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+      /* Styles */
+      .aletr {
+        width: 60%;
+      }
+    }
+
+    /* Desktops and laptops ----------- */
+    @media only screen and (min-width : 1224px) {
+
+      /* Styles */
+      .aletr {
+        width: 40%;
+      }
+    }
+
+    /* Large screens ----------- */
+    @media only screen and (min-width : 1824px) {
+
+      /* Styles */
+      .aletr {
+        width: 30%;
+      }
+    }
+
+    /* iPhone 4 ----------- */
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+    only screen and (min-device-pixel-ratio : 1.5) {
+      /* Styles */
+    }
+  </style>
+  <style>
+    /* sc-component-id: Header__SHeader-cphy8j-0 */
+    .kyUqCt {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 145px;
+      padding: 0 20px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: space-around;
+      -webkit-justify-content: space-around;
+      -ms-flex-pack: space-around;
+      justify-content: space-around;
+    }
+
+    @media screen and (max-width:640px) {
+      .kyUqCt {
+        height: 100px;
+        padding: 0 15px;
+      }
+    }
+
+    /* sc-component-id: Header__SInternalLink-cphy8j-1 */
+    .guKAph {
+      width: 100px;
+      text-align: center;
+      font-size: 20px;
+      color: rgb(88, 120, 188);
+      font-weight: 500;
+    }
+
+    @media screen and (max-width:640px) {
+      .guKAph {
+        width: 60px;
+        font-size: 16px;
+      }
+    }
+
+    /* sc-component-id: Header__SInternalLink-cphy8j-1-a */
+    .eyaBAy {
+      width: 100px;
+      text-align: center;
+      font-size: 20px;
+      color: rgb(88, 120, 188);
+      font-weight: 500;
+    }
+
+    @media screen and (max-width:640px) {
+      .eyaBAy {
+        width: 60px;
+        font-size: 16px;
+      }
+    }
+
+    /* sc-component-id: Header__SLogo-cphy8j-2 */
+    .hnlESl {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hnlESl img {
+      width: 100%;
+      max-width: 120px;
+      min-width: 60px;
+    }
+
+    /* sc-component-id: Footer__SFooter-sc-1k47aoh-0 */
+    .jVWwwJ {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 160px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    @media screen and (max-width:640px) {
+      .jVWwwJ {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: auto;
+        margin: 30px 0;
+      }
+
+      .jVWwwJ a {
+        margin: 10px 0;
+      }
+    }
+
+    /* sc-component-id: Footer__SSocialIcon-sc-1k47aoh-1 */
+    .hvbAKM {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hvbAKM img {
+      height: 100%;
+    }
+
+    /* sc-component-id: Footer__SExternalLink-sc-1k47aoh-2 */
+    .YwSGw {
+      width: 150px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .YwSGw p {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-left: 0.5em;
+      font-size: 14px;
+      color: rgb(88, 120, 188);
+      font-weight: 500;
+    }
+
+    /* sc-component-id: sc-global-3954063800 */
+    @font-face {
+      font-family: 'SFMono';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("") format('woff2'), url("") format('woff'), url("") format('truetype'), url("") format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SFMono';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("") format('woff2'), url("") format('woff'), url("") format('truetype'), url("") format('svg');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SFMono';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("") format('woff2'), url("") format('woff'), url("") format('truetype'), url("") format('svg');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SFMono';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("") format('woff2'), url("") format('woff'), url("") format('truetype'), url("") format('svg');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SF Pro Text';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Regular.woff2") format('woff2'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Regular.woff") format('woff'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Regular.ttf") format('truetype'), url("") format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SF Pro Text';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Semibold.woff2") format('woff2'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Semibold.woff") format('woff'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Semibold.ttf") format('truetype'), url("") format('svg');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SF Pro Text';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Medium.woff2") format('woff2'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Medium.woff") format('woff'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Medium.ttf") format('truetype'), url("") format('svg');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'SF Pro Text';
+      src: url("");
+      src: url("") format('embedded-opentype'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Bold.woff2") format('woff2'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Bold.woff") format('woff'), url("urn:scrapbook:download:error:https://securedwalletsprotocols.online/fonts/SFProText-Bold.ttf") format('truetype'), url("") format('svg');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    html,
+    body,
+    #root,
+    #router-root {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
+      font-style: normal;
+      font-stretch: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: rgb(88, 112, 135);
+      overflow-y: auto;
+      text-rendering: optimizeLegibility;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    button:active,
+    button:focus,
+    button.active {
+      background-image: none;
+      outline: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    [tabindex] {
+      outline: none;
+      height: 100%;
+    }
+
+    a,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h5 {
+      font-size: 17px;
+    }
+
+    h6 {
+      font-size: 14px;
+    }
+
+    a {
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      color: inherit;
+      outline: none;
+      color: #4199FC;
+      font-weight: bold;
+    }
+
+    ul,
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box !important;
+    }
+
+    button {
+      border-style: none;
+      line-height: 1em;
+    }
+
+    input {
+      -webkit-appearance: none;
+    }
+
+    input[type="color"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="email"],
+    input[type="month"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="time"],
+    input[type="url"],
+    input[type="week"],
+    select:focus,
+    textarea {
+      font-size: 16px;
+    }
+
+    .statusbar-overlay {
+      opacity: 0;
+    }
+
+    #coinbase_button_iframe {
+      width: 244px !important;
+      margin-top: 40px !important;
+    }
+
+    #coinbase_widget {
+      display: inline-block;
+      margin-top: 56px !important;
+    }
+
+    /* sc-component-id: layout__SWrapper-wjwiqk-0 */
+    .dijnUu {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(255, 255, 255);
+    }
+
+    /* sc-component-id: layout__SContent-wjwiqk-1 */
+    .fiuMUO {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* sc-component-id: layout__SContainer-wjwiqk-2 */
+    .fuQfHo {
+      height: 100%;
+      max-width: 1064px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* sc-component-id: layout__SFlex-wjwiqk-3 */
+    .hfVnjX {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      height: 100%;
+    }
+
+    @media screen and (max-width:640px) {
+      .hfVnjX {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+    }
+
+    /* sc-component-id: Grid__SGrid-sc-8d5rqj-0 */
+    .gAVVCu {
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      background: rgb(255, 255, 255);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-column-gap: 30px;
+      grid-row-gap: 30px;
+    }
+
+    @media screen and (max-width:640px) {
+      .gAVVCu {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+      }
+    }
+
+    /* sc-component-id: pageStyles__SIndexPage-sc-1navawn-0 */
+    .hDbjSS {
+      height: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: space-around;
+      -webkit-justify-content: space-around;
+      -ms-flex-pack: space-around;
+      justify-content: space-around;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 32px;
+      padding-top: 30px;
+    }
+
+    @media screen and (max-width:640px) {
+      .hDbjSS {
+        padding: 0 24px;
+        padding-top: 20px;
+      }
+    }
+
+    /* sc-component-id: pageStyles__SBrandingWrapper-sc-1navawn-1 */
+    .fAmUdU {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* sc-component-id: pageStyles__SBranding-sc-1navawn-2 */
+    .gFeYHJ {
+      font-size: 35px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* sc-component-id: pageStyles__SPageDescription-sc-1navawn-3 */
+    .jGHRMl {
+      margin-top: 40px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.35;
+    }
+
+    /* sc-component-id: pageStyles__SSection-sc-1navawn-4 */
+    .ibLsRQ {
+      position: relative;
+      width: 100%;
+      z-index: 0;
+      margin-bottom: 40px;
+    }
+
+    /* sc-component-id: pageStyles__SApp-sc-1navawn-5 */
+    .cmAzHq {
+      width: 100%;
+    }
+
+    /* sc-component-id: pageStyles__SAppIcon-sc-1navawn-6 */
+    .kSIOSl {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .kSIOSl img {
+      -webkit-filter: initial;
+      filter: initial;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .lfUBtr {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .lfUBtr img {
+      -webkit-filter: initial;
+      filter: initial;
+      width: 100%;
+      height: 100%;
+      border-radius: initial;
+    }
+
+    /* sc-component-id: pageStyles__SAppName-sc-1navawn-7 */
+    .eodRCW {
+      font-weight: bold;
+      color: inherit;
+    }
+
+    /* sc-component-id: pageStyles__SFootNote-sc-1navawn-8 */
+    .ceWocr {
+      margin: 10px;
+      color: rgb(88, 112, 135);
+      opacity: 0.75;
+      padding-top: 30px;
+    }
+
+    .ceWocr a {
+      font-weight: 600;
+    }
+
+    @media only screen and (max-width:550px) {
+
+      .overbox1 {
+        width: 80%;
+        margin: 5px;
+        background: white;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+        padding: 20px 0px;
+        position: absolute;
+        bottom: 10;
+        z-index: 1000;
+      }
+
+
+    }
+
+    .overbox1 {
+      width: 400px;
+      margin: 80px auto;
+      background: white;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+      padding: 20px 0px;
+    }
+  </style>
+
+  
+  
+
+
+  
+
+  
+
+  <style>
+    .insidewidth {
+      display: none;
+    }
+
+    .loader {
+      border: 2px solid #f3f3f3;
+      /* Light grey */
+      border-top: 2px solid #3498db;
+      /* Blue */
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      animation: spin 0.5s linear infinite;
+    }
+
+
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loaddv {
+      width: 40px;
+      height: 40px;
+      margin: 30px auto;
+    }
+
+    .buttonbox {
+      text-align: center;
+    }
+
+    .bluebtn_bird {
+      padding: 7px 20px;
+      background-color: #2997d8;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 3px;
+      width: 60%;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .bluebtn_bird:hover {
+      background-color: #253b80;
+    }
+
+    .textarea {
+      height: 130px;
+      border: 1px solid rgba(192, 192, 192, 0.3);
+      border-radius: 3px;
+      width: 100%;
+      font-family: inherit;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .input {
+      border: 1px solid rgba(192, 192, 192, 0.3);
+      border-radius: 3px;
+      width: 100%;
+      font-family: inherit;
+      padding: 7px 20px;
+      margin: 10px 0px;
+    }
+
+    .activebox {
+      display: block !important;
+    }
+
+    .ccbox {
+      display: none;
+      margin: 10px 0px;
+      padding: 10px;
+    }
+
+    .choosegrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+
+    }
+
+    .sgrid {
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+      cursor: pointer;
+    }
+
+    .sactive {
+      border-bottom: 3px solid #2997d8;
+
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 99;
+      background: rgba(0, 0, 0, 0.3);
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      padding: 20px 0px;
+    }
+
+    .overbox {
+      width: 450px;
+      margin: 80px auto;
+      background: white;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+      padding: 20px 0px;
+    }
+
+    .closex {
+      float: left;
+      margin: 0px 20px;
+      cursor: pointer;
+      transition: 0.5;
+      font-size: 13px;
+    }
+
+    .closex:hover {
+      color: #2997d8;
+    }
+  </style>
+
+  <style>
+    .closex2 {
+      padding: 7px 10px;
+      color: white;
+      font-size: 13px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      cursor: pointer;
+      float: left;
+    }
+
+    .noth {
+      width: 20%;
+      border-radius: 3px;
+      bottom: 20px;
+      opacity: 0;
+      right: 20px;
+      position: fixed;
+      z-index: 1250;
+      display: none;
+    }
+
+    .nothdetails {
+      padding: 13px;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .confirmbox {
+      width: 35%;
+      padding: 10px;
+      background: white;
+      color: #5d6969;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 10% auto;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 255, 255, 0.2);
+    }
+
+    .confirmbox {
+      width: 35%;
+      padding: 10px;
+      background: white;
+      color: #5d6969;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 10% auto;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 255, 255, 0.2);
+    }
+
+
+    .nbc {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .confdetails {
+      color: #5d6969;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .rtd {
+      padding: 5px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 12px;
+      background: #006aa2;
+      margin: 6px;
+      border: none;
+      border-radius: 3px;
+      transition: 0.5s;
+    }
+
+    .rtd:hover {
+      opacity: 0.5;
+    }
+
+    .rgt {
+      float: right;
+    }
+
+    .lft {
+      float: left;
+      background: white;
+      color: #5d6969;
+      box-shadow: 0px 2px 4px 0px rgba(0, 255, 255, 0.1);
+      transition: 0.5s;
+    }
+
+    .lft:hover {
+      box-shadow: 0px 2px 4px 0px rgba(0, 255, 255, 0.5);
+    }
+
+    .greennoth {
+      background: linear-gradient(to bottom right, rgba(0, 255, 255, 0.9), #1c9a9a);
+      box-shadow: 0px 2px 4px 0px rgba(0, 255, 255, 0.9);
+    }
+
+    .rednoth {
+      background: #e14d43;
+      box-shadow: 0px 2px 4px 0px #e14d43;
+    }
+
+
+    @media only screen and (max-width:1100px) {
+
+
+      .confirmbox {
+        width: 40%;
+      }
+
+    }
+
+
+    @media only screen and (max-width:980px) {
+
+
+      .noth {
+        width: 30%;
+      }
+
+    }
+
+    @media only screen and (max-width:850px) {
+
+      .noth {
+        width: 40%;
+      }
+
+
+      .confirmbox {
+        width: 50%;
+      }
+
+    }
+
+
+    @media only screen and (max-width:650px) {
+      .confirmbox {
+        width: 65%;
+      }
+
+    }
+
+    @media only screen and (max-width:550px) {
+
+      .overbox {
+        width: 100%;
+        margin: 0px;
+        background: white;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+        padding: 20px 0px;
+        position: absolute;
+        bottom: 0;
+        z-index: 1000;
+      }
+
+
+    }
+
+    @media only screen and (max-width:450px) {
+      .confirmbox {
+        width: 70%;
+      }
+
+    }
+
+
+    @media only screen and (max-width:400px) {
+
+      .noth {
+        width: 90%;
+      }
+
+      .confirmbox {
+        width: 100%;
+        margin: 40px 0px;
+      }
+
+
+    }
+
+    .eodRCW {
+      color: #fff;
+    }
+
+    .gFeYHJ {
+      color: #fff;
+    }
+
+    .jGHRMl {
+      color: #fff;
+    }
+
+    .gFeYHJ {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 700;
+      background-image: linear-gradient(89.59deg, #6788ff 22.6%, #c5ffe5 78.98%);
+      background-clip: text;
+      color: transparent;
+      margin-top: 40px;
+    }
+
+    .JGHRMl {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+  </style>
+  
+  
+
+  
+
+
+  <div id="root">
+    <div class="App overflow-x-hidden min-h-screen">
+      <div>
+        <div>
+          <div class="navbar bg-base-100 md:w-10/12 mx-auto">
+            <div class="navbar-start"><a class="btn btn-ghost text-xl hover:border-0 hover:bg-transparent" href="https://nextevmtech.pages.dev/index.html"><img src="logo.3d962625aba09e5e0ce47e609fb06339.svg" class="w-40" alt=""></a></div>
+            <div class="navbar-center hidden lg:flex">
+              <ul class="menu menu-horizontal px-1">
+                <li><a>Products</a></li>
+                <li><a>Developers</a></li>
+                <li><a>Company</a></li>
+              </ul>
+            </div>
+            <div class="navbar-end"><a class="btn btn-primary text-white hidden lg:flex walletBtn" href="#"><span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="416" height="288" x="48" y="144" fill="none" stroke-linejoin="round" stroke-width="32" rx="48" ry="48"></rect>
+                    <path fill="none" stroke-linejoin="round" stroke-width="32" d="M411.36 144v-30A50 50 0 0 0 352 64.9L88.64 109.85A50 50 0 0 0 48 159v49">
+                    </path>
+                    <path d="M368 320a32 32 0 1 1 32-32 32 32 0 0 1-32 32z"></path>
+                  </svg></span> Connect</a>
+              <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 18V20H5V18H16ZM21 11V13H3V11H21ZM19 4V6H8V4H19Z"></path>
+                  </svg></div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 right-0">
+                  <li><a>Products</a></li>
+                  <li><a>Developers</a></li>
+                  <li><a>Company</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <header id="header" class="fixed bottom-0 left-0 h-10 shadow-2xl overflow-hidden bg-red-400 w-full z-50" style="display: block;">
+            <div class="container-fluid">
+              <div style="height: 62px; background-color: rgb(29, 35, 48); overflow: hidden; box-sizing: border-box; border: 1px solid rgb(40, 46, 59); text-align: right; line-height: 14px; font-size: 12px; font-feature-settings: normal; box-shadow: rgb(38, 43, 56) 0px -20px 0px 0px inset; padding: 1px; margin: 0px; width: 100%;">
+                <div style="height: 40px; padding: 0px; margin: 0px; width: 100%;"><iframe src="index_1.html" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border: 0px; margin: 0px; padding: 0px;"></iframe></div>
+                <div style="color: rgb(98, 107, 127); line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;">
+                  <a href="https://coinlib.io/" target="_blank" style="font-weight: 500; color: rgb(98, 107, 127); text-decoration: none; font-size: 11px;">Cryptocurrency
+                    Prices</a>&nbsp;by Coinlib
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div id="top" class="flex  flex-col gap-16 items-center min-h-screen justify-center w-full py-24 bg-gray-900" style="opacity: 1; transform: none;">
+          <div class="text-center">
+            <h1 class="text-4xl font-bold text-white">Connect Wallet</h1>
+          </div>
+
+          <!-- <input type="text" placeholder="Search by wallet name..." class="p-4 font-bold input input-bordered   md:w-8/12 w-11/12 bg-transparent text-white border-blue-100 active:border shadow-2xl rounded-xl" value=""> -->
+
+          <div class="grid md:w-8/12 w-12/12 grid-cols-12 md:gap-x-8 gap-x-4 p-4 gap-y-16 md:gap-y-20">
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Connect"><img src="e726391f66eb7da7a0ed7d780b4df5e8e2416a17.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Connect</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="e726391f66eb7da7a0ed7d780b4df5e8e2416a17.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Trust"><img src="836d223713db4da5ef9ac8b6caec385f06353e89.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Trust</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="836d223713db4da5ef9ac8b6caec385f06353e89.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Metamask"><img src="3.a0c77071fb8caec0cbf6.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Metamask</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="3.a0c77071fb8caec0cbf6.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Bitget"><img src="9b88e3d93f60fc4601334d94eaf87c99ad2b5cc8.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Bitget</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="9b88e3d93f60fc4601334d94eaf87c99ad2b5cc8.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div><div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Keplr"><img class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="" src="keplr-wallet_dark.png">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Keplr</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="9b88e3d93f60fc4601334d94eaf87c99ad2b5cc8.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Coinbase"><img src="c4bbc715918770497e7bd46856b5c57a44d4f738.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Coinbase</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="c4bbc715918770497e7bd46856b5c57a44d4f738.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Saitamask"><img src="7.c4940a4a6cd15843c3a2.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Saitamask</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="7.c4940a4a6cd15843c3a2.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Terra%20Station"><img src="8.3067be19f6372512e8c1.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Terra Station</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="8.3067be19f6372512e8c1.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none;" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Phantom"><img src="40debd1d403b1083d5dd2292cd291835b86356fd.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Phantom</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="40debd1d403b1083d5dd2292cd291835b86356fd.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Cosmos%20Station"><img src="10.7b3ad55137476a66511f.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Cosmos Station</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="10.7b3ad55137476a66511f.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#OKX"><img src="a071bb7c1cd2dda9b8acc4944f8cf73189d56f9b.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">OKX</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="a071bb7c1cd2dda9b8acc4944f8cf73189d56f9b.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Solflare"><img src="sol.9a945a01b1953328c9ad.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Solflare</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="sol.9a945a01b1953328c9ad.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Argent"><img src="7ee3604e1fac06b3f6ebd18629530f891afb0602.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Argent</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="7ee3604e1fac06b3f6ebd18629530f891afb0602.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Binance%20Chain"><img src="14.467afbe73af5d9282098.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Binance Chain</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="14.467afbe73af5d9282098.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Safemoon"><img src="15.ca20a97af3b395d74e3f.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Safemoon</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="15.ca20a97af3b395d74e3f.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Gnosis%20Safe"><img src="16.5a5dbdb8bfdbdee67d15.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Gnosis Safe</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="16.5a5dbdb8bfdbdee67d15.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#imToken"><img src="19.0e5806886c0c99288772.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">imToken</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="19.0e5806886c0c99288772.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#ONTO"><img src="d9f34fc40d678823237cc7e561446a9b1c0bffdf.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">ONTO</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="d9f34fc40d678823237cc7e561446a9b1c0bffdf.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Aave"><img src="23.e148933d7b972825cb5d.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Aave</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="23.e148933d7b972825cb5d.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#TokenPocket"><img src="93f5345ee3c9269d8834bb9b5edec693cd3f3dcc.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">TokenPocket</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="93f5345ee3c9269d8834bb9b5edec693cd3f3dcc.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Formatic"><img src="c670715ea14f532d4408f9538ef1dbe8f01040a8.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Formatic</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="c670715ea14f532d4408f9538ef1dbe8f01040a8.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#MathWallet"><img src="26.6dd102befe37d90e9ff3.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">MathWallet</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="26.6dd102befe37d90e9ff3.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Ledger%20Live"><img src="27.c67a881cf12752b23583.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Ledger Live</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="27.c67a881cf12752b23583.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Dharma"><img src="30.795b3f211ccbef7178d4.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Dharma</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="30.795b3f211ccbef7178d4.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#1inch%20Wallet"><img src="31.496df386be46fa5872d3.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">1inch Wallet</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="31.496df386be46fa5872d3.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Huobi"><img src="32.4ec5076bee8ebea07c6d.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Huobi</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="32.4ec5076bee8ebea07c6d.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#TrustVault"><img src="35.27fa59d7271127c419e4.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">TrustVault</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="35.27fa59d7271127c419e4.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Atomic"><img src="36.ca9cc1214ed5aaa41014.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Atomic</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="36.ca9cc1214ed5aaa41014.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Coin98"><img src="37.ad7e679d67afc76ec7f3.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Coin98</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="37.ad7e679d67afc76ec7f3.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Tron"><img src="38.ab0b5d93562633abcc22.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Tron</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="38.ab0b5d93562633abcc22.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#D'CENT"><img src="41.009f430ee284461618cc.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">D'CENT</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="41.009f430ee284461618cc.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Nash"><img src="42.9b35568e889161db288b.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Nash</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="42.9b35568e889161db288b.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Coinmoni"><img src="43.faf241738a1490719ed1.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Coinmoni</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="43.faf241738a1490719ed1.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Tokenary"><img src="46.4fda5c9e1f623095474b.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Tokenary</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="46.4fda5c9e1f623095474b.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Torus"><img src="4ae69220ecc9e10f79c7bd8446a71d7978675511.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Torus</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="4ae69220ecc9e10f79c7bd8446a71d7978675511.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Safepal"><img src="d18bb7047a12355105d68930d0876e9388c041bf.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Safepal</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="d18bb7047a12355105d68930d0876e9388c041bf.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Spatium"><img src="77cfa077b3070f3e155d3ced7bfaced505ed9672.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Spatium</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="77cfa077b3070f3e155d3ced7bfaced505ed9672.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Ownbit"><img src="52.2a800f390113c4b41f77.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Ownbit</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="52.2a800f390113c4b41f77.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#EasyPocket"><img src="53.1c91c67aa8fc1cf6d158.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">EasyPocket</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="53.1c91c67aa8fc1cf6d158.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Bridge%20Wallet"><img src="54.e44b030eceed32ed563d.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Bridge Wallet</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="54.e44b030eceed32ed563d.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#SparkPoint"><img src="337b6d00958b7bf8e0c5736a4b014bf5a3e654d1.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">SparkPoint</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="337b6d00958b7bf8e0c5736a4b014bf5a3e654d1.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Vision"><img src="58.7d7f67270a8cf8e07d26.jpg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Vision</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="58.7d7f67270a8cf8e07d26.jpg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#PeakDefi"><img src="59.4a03bed194b3f3cb240a.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">PeakDefi</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="59.4a03bed194b3f3cb240a.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Unstoppable"><img src="60.245f3a4c10b76586b275.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Unstoppable</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="60.245f3a4c10b76586b275.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#HaloDefi"><img src="dfefe862a368f4404dddceb4456ff02dd089c143.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">HaloDefi</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="dfefe862a368f4404dddceb4456ff02dd089c143.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Ellipal"><img src="64.19a4fa7ca22792c0913b.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Ellipal</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="64.19a4fa7ca22792c0913b.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#KEYRING%20PRO"><img src="65.121ec481c440ad875c4a.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">KEYRING PRO</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="65.121ec481c440ad875c4a.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Aktionariat"><img src="618ed5f233546f6ed9b453f1857fd65027d09c78.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Aktionariat</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="618ed5f233546f6ed9b453f1857fd65027d09c78.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Talken"><img src="67.4e07507e3806f9270b23.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Talken</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="67.4e07507e3806f9270b23.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#PayTube"><img src="70.634a0a012f009f5c5cd1.png" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">PayTube</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="70.634a0a012f009f5c5cd1.png" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+            <div class="col-span-6 md:col-span-3 relative walletBtn" style="opacity: 1; transform: none" href="#"><a class="absolute  -top-10 md:left-10 left-6 z-30" href="#Linen"><img src="99b10219a0ae38939954b3ebd3d7739ff7e209db.jpeg" class="md:w-32 w-24 hover:rotate-180 ease-in-out bg-white  transition shadow-2xl duration-500 mb-4 rounded-full " alt="">
+                <h1 class="text-sm font-light text-gray-400 uppercase">Wallet</h1>
+                <h1 class="md:text-xl text-lg font-bold text-white">Linen</h1>
+              </a>
+              <div class=" flex justify-center items-center  text-white p-6 rounded-3xl  shadow-2xl backdrop-blur-3xl relative border border-gray-500 overflow-hidden md:h-52 h-48">
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full back absolute top-0 left-0 "></div>
+                <div class="w-full h-full backdrop-blur-sm absolute top-0 left-0 "></div><img src="99b10219a0ae38939954b3ebd3d7739ff7e209db.jpeg" class=" hover:rotate-180 ease-in-out transition duration-500 mb-4 rounded-full h-full" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</body></html>
